@@ -23,7 +23,7 @@ class TopicsTableSeeder extends Seeder
             ->make()
             ->each(function ($topic, $index) use ($userIds, $categoryIds, $faker) {
                 $topic->user_id = $faker->randomElement($userIds);
-                $topic->category_id = $faker->randomElement($userIds);
+                $topic->category_id = $faker->randomElement($categoryIds);
             });
 
         Topic::insert($topics->toArray());
