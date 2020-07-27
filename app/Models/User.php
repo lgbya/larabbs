@@ -41,4 +41,9 @@ class User extends Authenticatable implements MustVerifyEmail
     {
         return $this->hasMany(Topic::class);
     }
+
+    public function isAuthOf($model)
+    {
+        return $this->id == $model->user_id;
+    }
 }
