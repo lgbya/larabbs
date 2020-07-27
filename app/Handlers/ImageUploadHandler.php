@@ -3,13 +3,14 @@
 namespace App\Handlers;
 
 use Illuminate\Support\Str;
+use Intervention\Image\Facades\Image;
 
 class ImageUploadHandler
 {
     // 只允许以下后缀名的图片文件上传
     protected $allowed_ext = ['png', 'jpg', 'gif', 'jpeg'];
 
-    public function save($file, $folder, $filePrefix)
+    public function save($file, $folder, $filePrefix, $maxWidth = false)
     {
         // 构建存储的文件夹规则，值如：uploads/images/avatars/201709/21/
         // 文件夹切割能让查找效率更高。
@@ -34,8 +35,25 @@ class ImageUploadHandler
         // 将图片移动到我们的目标存储路径中
         $file->move($uploadPath, $filename);
 
+        if($maxWidth && $extension != 'gif'){
+            $this->reduceSize($uploadPath . '/' . $filename, $maxWidth);
+        }
+
         return [
             'path' => config('app.url') . "/$folderName/$filename",
         ];
+    }
+
+    public function reduceSize($filePath, $maxWidth)
+    {
+        $image = Image::make($filePath);
+
+        $image->resize($maxWidth, null, function($constraint){
+           $constraint->aspectRatio();
+
+           $constraint->upsize();
+        });
+
+        $image->save();
     }
 }
