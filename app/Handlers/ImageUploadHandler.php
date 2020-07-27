@@ -48,10 +48,12 @@ class ImageUploadHandler
     {
         $image = Image::make($filePath);
 
-        $image->resize($maxWidth, null, function($constraint){
-           $constraint->aspectRatio();
-
-           $constraint->upsize();
+        // 进行大小调整的操作
+        $image->resize($maxWidth, null, function ($constraint) {
+            // 设定宽度是 $maxWidth，高度等比例双方缩放
+            $constraint->aspectRatio();
+            // 防止裁图时图片尺寸变大
+            $constraint->upsize();
         });
 
         $image->save();
