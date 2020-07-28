@@ -51,4 +51,9 @@ class User extends Authenticatable implements MustVerifyEmail
     {
         return $this->id == $model->user_id;
     }
+
+    public function avatar()
+    {
+        return $this->avatar?:'http://larabbs.test/uploads/images/avatars/202007/29/1_1595958035_QfnGaP5bsm.jpg';
+    }
 }

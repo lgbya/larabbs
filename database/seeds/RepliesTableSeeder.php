@@ -17,7 +17,7 @@ class RepliesTableSeeder extends Seeder
         $factory = app(Generator::class);
 
         $replies = factory(Reply::class)
-            ->times(50)
+            ->times(100)
             ->make()
             ->each(function ($reply, $index) use ($factory,$userIds, $topicIds){
                 $reply->user_id = $factory->randomElement($userIds);
