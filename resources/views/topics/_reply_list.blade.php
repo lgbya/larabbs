@@ -14,11 +14,13 @@
                     <span class="text-secondary"> • </span>
                     <span class="meta text-secondary" title="{{ $reply->created_at }}">{{ $reply->created_at->diffForHumans() }} </span>
                     {{-- 回复删除按钮 --}}
+                    @can('destroy', $reply)
                     <span class="meta float-right ">
-                     <a title="删除回复">
+                    <a title="删除回复">
                         <i class="far fa-trash-alt"></i>
-                     </a>
-                     </span>
+                    </a>
+                    </span>
+                    @endcan
                 </div>
                 <div class="reply-content text-secondary">
                     {!! $reply->content !!}

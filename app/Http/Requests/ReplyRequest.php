@@ -10,17 +10,13 @@ class ReplyRequest extends Request
         {
             // CREATE
             case 'POST':
-            {
-                return [
-                    // CREATE ROLES
-                ];
-            }
             // UPDATE
             case 'PUT':
             case 'PATCH':
             {
                 return [
-                    // UPDATE ROLES
+                    'content' => 'required|min:6|max:100',
+                    'topic_id' => 'required|numeric',
                 ];
             }
             case 'GET':
@@ -35,7 +31,8 @@ class ReplyRequest extends Request
     public function messages()
     {
         return [
-            // Validation messages
+            'content.min' => '回复内容不少于6个字',
+            'content.max' => '回复内容不大于100个字',
         ];
     }
 }
