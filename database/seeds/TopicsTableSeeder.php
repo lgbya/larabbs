@@ -11,7 +11,6 @@ class TopicsTableSeeder extends Seeder
     public function run()
     {
 
-
         $userIds = User::all()->pluck('id')->toArray();
 
         $categoryIds = Category::all()->pluck('id')->toArray();

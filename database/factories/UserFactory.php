@@ -27,5 +27,6 @@ $factory->define(User::class, function (Faker $faker) {
         'introduction' => $faker->sentence(),
         'created_at' => $dateTime,
         'updated_at' => $dateTime,
+        'avatar' => User::defaultAvatar(),
     ];
 });

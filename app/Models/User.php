@@ -55,10 +55,6 @@ class User extends Authenticatable implements MustVerifyEmail
         return $this->id == $model->user_id;
     }
 
-    public function avatar()
-    {
-        return $this->avatar?:'http://larabbs.test/uploads/images/avatars/202007/29/1_1595958035_QfnGaP5bsm.jpg';
-    }
 
     public function notify($instance)
     {
@@ -71,5 +67,17 @@ class User extends Authenticatable implements MustVerifyEmail
         }
 
         $this->laravelNotify($instance);
+    }
+
+    public static function defaultAvatar()
+    {
+        return trim(env('APP_URL'), '/') . '/uploads/images/default/default_header.png';
+    }
+
+    public function markAsRead()
+    {
+        $this->notification_count=0;
+        $this->save();
+        $this->unreadNotifications->markAsRead();
     }
 }

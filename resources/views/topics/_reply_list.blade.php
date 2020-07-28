@@ -3,7 +3,7 @@
         <li class=" media" name="reply{{ $reply->id }}" id="reply{{ $reply->id }}">
             <div class="media-left">
                 <a href="{{ route('users.show', [$reply->user_id]) }}">
-                    <img class="media-object img-thumbnail mr-3" width="60px" height="60px" alt="{{ $reply->user->name }}" src="{{ $reply->user->avatar()}}" />
+                    <img class="media-object img-thumbnail mr-3" width="60px" height="60px" alt="{{ $reply->user->name }}" src="{{ $reply->user->avatar}}" />
                 </a>
             </div>
             <div class="media-body">

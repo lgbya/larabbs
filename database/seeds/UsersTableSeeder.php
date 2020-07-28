@@ -13,18 +13,10 @@ class UsersTableSeeder extends Seeder
      */
     public function run()
     {
-        $faker = app(Generator::class);
-
-        $avatars = [
-            'http://larabbs.test/uploads/images/avatars/202007/29/1_1595958035_QfnGaP5bsm.jpg',
-        ];
 
         $users = factory(User::class)
             ->times(10)
-            ->make()
-            ->each(function ($user, $index) use ($faker, $avatars){
-                $user->avatar = $faker->randomElement($avatars);
-            });
+            ->make();
 
         $userArray = $users->makeVisible(['password', 'remember_token'])->toArray();
 
@@ -34,7 +26,6 @@ class UsersTableSeeder extends Seeder
         $user = User::find(1);
         $user->name = 'Summer';
         $user->email = 'summer@example.com';
-        $user->avatar = 'https://iocaffcdn.phphub.org/uploads/images/201710/14/1/ZqM7iaP4CR.png';
         $user->save();
 
     }
