@@ -58,6 +58,16 @@ class User extends Authenticatable implements MustVerifyEmail
         return $this->id == $model->user_id;
     }
 
+    public function setPasswordAttribute($value)
+    {
+        // 如果值的长度等于 60，即认为是已经做过加密的情况
+        if (strlen($value) != 60) {
+            // 不等于 60，做密码加密处理
+            $value = bcrypt($value);
+        }
+        $this->attributes['password'] = $value;
+    }
+
 
     public function notify($instance)
     {
@@ -71,6 +81,16 @@ class User extends Authenticatable implements MustVerifyEmail
 
         $this->laravelNotify($instance);
     }
+
+    public function setAvatarAttribute($path)
+    {
+        if (!str_starts_with($path, 'http')) {
+            $path = config('app.url') . "/uploads/images/avatars/$path";
+
+        }
+        $this->attributes['avatar'] = $path;
+    }
+
 
     public static function defaultAvatar()
     {
