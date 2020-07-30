@@ -53,7 +53,7 @@ class Kernel extends HttpKernel
             \Illuminate\View\Middleware\ShareErrorsFromSession::class,
 
             // 检验 CSRF ，防止跨站请求伪造的安全威胁
-//            \App\Http\Middleware\VerifyCsrfToken::class,
+            \App\Http\Middleware\VerifyCsrfToken::class,
 
             // 处理路由绑定
             \Illuminate\Routing\Middleware\SubstituteBindings::class,
