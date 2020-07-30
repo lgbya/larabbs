@@ -25,7 +25,7 @@ trait ActiveUserHelper
     protected $user_number = 6;
 
     protected $cache_key = 'larabbs_active_users';
-    protected $cache_expire_in_minutes = 65;
+    protected $cache_expire_in_minutes = 3900;
 
     public function getActiveUsers()
     {

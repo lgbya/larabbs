@@ -24,7 +24,9 @@ class TopicsTableSeeder extends Seeder
                 $topic->user_id = $faker->randomElement($userIds);
                 $topic->category_id = $faker->randomElement($categoryIds);
             });
+
         Topic::insert($topics->toArray());
+
         $topic = Topic::find(1);
         $topic->user_id = 1;
         $topic->save();
