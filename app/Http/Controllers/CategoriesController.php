@@ -24,7 +24,7 @@ class CategoriesController extends Controller
             'topics' => $topics,
             'category' => $category,
             'activeUsers' => $activeUsers,
-            'links' => $link,
+            'links' => $links,
         ]);
     }
 
