@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Models\Traits\ActiveUserHelper;
+use App\Models\Traits\LastActivedAtHelper;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -11,6 +12,8 @@ use Spatie\Permission\Traits\HasRoles;
 
 class User extends Authenticatable implements MustVerifyEmail
 {
+    use LastActivedAtHelper;
+
     use HasRoles;
 
     use ActiveUserHelper;
@@ -106,4 +109,6 @@ class User extends Authenticatable implements MustVerifyEmail
         $this->save();
         $this->unreadNotifications->markAsRead();
     }
+
+
 }

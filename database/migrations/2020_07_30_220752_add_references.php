@@ -32,12 +32,12 @@ class AddReferences extends Migration
     public function down()
     {
         Schema::table('topics', function (Blueprint $table){
-            $table->dropColumn(['user_id']);
+            $table->dropForeign(['user_id']);
         });
 
         Schema::table('replies', function (Blueprint $table){
-            $table->dropColumn(['user_id']);
-            $table->dropColumn(['topic_id']);
+            $table->dropForeign(['user_id']);
+            $table->dropForeign(['topic_id']);
         });
     }
 }
