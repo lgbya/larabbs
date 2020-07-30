@@ -31,7 +31,7 @@
 
         @include('layouts._footer')
     </div>
-
+    {{dd(app()->isLocal())}}
     @if(app()->isLocal())
         @include('sudosu::user-selector')
     @endif
