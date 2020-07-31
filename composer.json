@@ -11,6 +11,7 @@
         "php": "^7.2",
         "barryvdh/laravel-debugbar": "^3.3",
         "dingo/api": "^2.2",
+        "doctrine/dbal": "^2.10",
         "fideloper/proxy": "^4.0",
         "guzzlehttp/guzzle": "^7.0",
         "hieu-le/active": "~4",
