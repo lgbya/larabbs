@@ -12,24 +12,6 @@ use Laravel\Socialite\Facades\Socialite;
 
 class AuthorizationsController extends Controller
 {
-
-    public function store(AuthorizationRequest $request)
-    {
-        $username = $request->username;
-
-        filter_var($username, FILTER_VALIDATE_EMAIL) ?
-            $credentials['email'] = $username :
-            $credentials['phone'] = $username;
-
-        $credentials['password'] = $request->password;
-
-        if(! ($token = Auth::guard('api')->attempt($credentials)) ){
-            return $this->response->errorUnauthorized('用户名或密码错误！');
-        }
-
-        return $this->respondWithToken($token)->setStatusCode(201);
-    }
-
     public function socialStore($type, SocialAuthorizationRequest $request)
     {
         if (!in_array($type, ['weixin'])){
@@ -80,6 +62,23 @@ class AuthorizationsController extends Controller
         }
 
         return $this->respondWithToken($user->id)->setStatusCode(201);
+    }
+
+    public function store(AuthorizationRequest $request)
+    {
+        $username = $request->username;
+
+        filter_var($username, FILTER_VALIDATE_EMAIL) ?
+            $credentials['email'] = $username :
+            $credentials['phone'] = $username;
+
+        $credentials['password'] = $request->password;
+
+        if(! ($token = Auth::guard('api')->attempt($credentials)) ){
+            return $this->response->errorUnauthorized('用户名或密码错误！');
+        }
+
+        return $this->respondWithToken($token)->setStatusCode(201);
     }
 
     public function update()
