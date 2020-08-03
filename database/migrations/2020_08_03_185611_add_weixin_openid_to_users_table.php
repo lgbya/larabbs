@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AddPhoneToUsersTable extends Migration
+class AddWeixinOpenidToUsersTable extends Migration
 {
     /**
      * Run the migrations.
@@ -14,8 +14,9 @@ class AddPhoneToUsersTable extends Migration
     public function up()
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->string('phone')->nullable()->unique()->after('name');
-            $table->string('email')->nullable()->change();
+            $table->string('weixin_openid')->nullable()->unique();
+            $table->string('weixin_unionid')->nullable()->unique();
+            $table->string('password')->nullable(false)->default('')->change();
         });
     }
 
@@ -27,9 +28,9 @@ class AddPhoneToUsersTable extends Migration
     public function down()
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->dropColumn('phone');
-            $table->string('email')->nullable('false')->change();
+            $table->dropColumn('weixin_openid');
+            $table->dropColumn('weixin_unionid');
+            $table->string('password')->nullable(false)->default('')->change();
         });
     }
-
 }
