@@ -69,6 +69,9 @@ $api->version('v1', [
         $api->get('links', 'LinksController@index')
             ->name('api.links.index');
 
+        $api->get('actived/users', 'UsersController@activedIndex')
+            ->name('api.actived.users.index');
+
         $api->group(['middleware' => 'api.auth'], function ($api){
             $api->get('users', 'UsersController@me')
                 ->name('api.user.show');
