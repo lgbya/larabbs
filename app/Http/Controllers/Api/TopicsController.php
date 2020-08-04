@@ -48,6 +48,11 @@ class TopicsController extends Controller
         return $this->response->noContent();
     }
 
+    public function show(Topic $topic)
+    {
+        return $this->response->item($topic, new TopicTransformer());
+    }
+
     public function userIndex(Request $request, User $user)
     {
         $query = $user->topics();
