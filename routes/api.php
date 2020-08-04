@@ -60,6 +60,10 @@ $api->version('v1', [
 
             $api->patch('users', 'UsersController@update')
                 ->name('api.user.update');
+
+            // 发布话题
+            $api->post('topics', 'TopicsController@store')
+                ->name('api.topics.store');
         });
 
     });
