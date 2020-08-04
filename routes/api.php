@@ -48,6 +48,8 @@ $api->version('v1', [
         $api->delete('authorizations/current', 'AuthorizationsController@destroy')
             ->name('api.authorizations.destroy');
 
+        $api->get('categories', 'CategoriesController@index')
+            ->name('api.categories.index');
 
         $api->group(['middleware' => 'api.auth'], function ($api){
             $api->get('users', 'UsersController@me')
