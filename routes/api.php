@@ -80,6 +80,9 @@ $api->version('v1', [
             $api->delete('topics/{topic}', 'TopicsController@destroy')
                 ->name('api.topics.destroy');
 
+            $api->post('topics/{topic}/replies', 'RepliesController@store')
+                ->name('api.topics.replies.store');
+
         });
 
     });
