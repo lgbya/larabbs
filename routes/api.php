@@ -66,6 +66,9 @@ $api->version('v1', [
         $api->get('users/{user}/replies', 'RepliesController@userIndex')
             ->name('api.users.replies.index');
 
+        $api->get('links', 'LinksController@index')
+            ->name('api.links.index');
+
         $api->group(['middleware' => 'api.auth'], function ($api){
             $api->get('users', 'UsersController@me')
                 ->name('api.user.show');
