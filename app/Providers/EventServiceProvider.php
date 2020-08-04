@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Listeners\EmailVerified;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Auth\Events\Verified;
 use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
@@ -22,10 +23,13 @@ class EventServiceProvider extends ServiceProvider
             SendEmailVerificationNotification::class,
         ],
         Verified::class => [
-            App\Listeners\EmailVerified::class,
+            EmailVerified::class,
         ],
         SocialiteWasCalled::class => [
             WeixinExtendSocialite::class,
+        ],
+        'eloquent.created: Illuminate\Notifications\DatabaseNotification' => [
+            'App\Listeners\PushNotification',
         ],
     ];
 
