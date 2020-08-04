@@ -18,4 +18,6 @@ class NotificationTransformer extends TransformerAbstract
             'updated_at' => $notification->updated_at->toDateTimeString(),
         ];
     }
+
+
 }
